@@ -1,0 +1,98 @@
+<!DOCTYPE = html>
+<html>
+<head>
+  <link href={{url_for('static', filename='css/styles.css')}} rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <meta charset="utf-8">
+  <title>{{config.APP_TITLE}}</title>
+</head>
+
+<body>
+<!--The intro splash screen-->
+<div id="intro">
+    This is a data visualization of crashes and is searchable by borough, year, and zipcode. All data has been pulled from <a href="https:/none/opendata.cityofnewyork.us/">NYC Open Data</a> site. For more information on avaiable datasets for crashes and other statistics, click <a href="">here</a>.
+
+    The data are imcomplete: XXX (XX%) entries lack location details except for GPS coordinates. A future version of this application will have the ability to show these crashes as well and allow for crowd-sourced updates to the street and other address information.
+
+    <button id="exit-intro">
+        Explore
+    </button>
+</div>
+
+<!-- The main web app without the intro splash screen -->
+<div id="flex-container">
+  <header>
+    <nav>
+      <!-- Menu -->
+      <!-- <div id=login> -->
+      <!--   <form action="URI_of_Database" method="POST"> -->
+      <!--     <label for="username-box">Username</label> -->
+      <!--     <input id="username-box" name="username" type="text"></input> -->
+      <!--     <label for="password-box">Password</label> -->
+      <!--     <input id="password-box" name="password" type="password"></input> --> 
+      <!--     <button id="login-submit-button" type="submit"></button> -->
+      <!-- </div> -->
+      <div id="menu">
+        <div class="menu-item" id="borough-select">
+          Borough:
+          <select id="borough-dropdown">
+            <option value="All">All</option>
+            <option value="Bronx">Bronx</option>
+            <option value="Manhattan">Manhattan</option>
+            <option value="Queens">Queens</option>
+            <option value="Brooklyn">Brooklyn</option>
+            <option value="Staten-Island">Staten Island</option>
+          </select>
+        </div>
+        <div class="menu-item" id="year-select">
+            Year:
+            <select id="year-dropdown">
+            </select>
+          </div>
+        <div class="menu-item" id="zip-code-select">
+          Zipcode:
+          <select id="zipcode-dropdown">
+          </select>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div id="crashviz">
+    <!-- The chart itself -->
+    <div id="chart-holder">
+      <img src="/images/Ordinary_bicycle01.jpg" alt="Old-timey bicyle"></img>
+    </div>
+    <div id="map-holder">
+      <img src="/images/Ordinary_bicycle01.jpg" alt="Old-timey bicyle"></img>
+    </div>
+  </div>
+
+
+  <footer>
+    <i class="material-icons">info</i>
+    <a href="mailto:mlootens@gmail.com"><i class="material-icons">email</i></a>
+    <div id="about">
+      Icons from <a href="https://material.io/icons/">Material Design</a> released under <a href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License Version 2.0</a>.
+      Data provided by NYC Open Data.
+
+      https://commons.wikimedia.org/wiki/File%3AOrdinary_bicycle01.jpg
+      https://upload.wikimedia.org/wikipedia/commons/a/a7/Ordinary_bicycle01.jpg
+      By Agnieszka Kwiecień (Nova) (Own work) [GFDL (http://www.gnu.org/copyleft/fdl.html) or CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons
+    </div>
+  </footer>
+</div>
+
+
+<!--scripts-->
+<script src={{url_for('static', filename='lib/d3.js')}}></script>
+
+<script src={{url_for('static', filename='js/donut.js')}}></script>
+<!-- <script src="/js/bar_chart2.js"></script> -->
+
+<script src={{url_for('static', filename='js/script.js')}}></script>
+<script src={{url_for('static', filename='js/test_data.js')}}></script>
+
+</body>
+</html>
