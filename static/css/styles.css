@@ -1,12 +1,12 @@
 body {
-  background-color: #ff9800;
-  width: 800px;
-  margin: auto;
+  background-color: #e6e6fa;
+  /*width: 800px;
+  margin: auto;*/
 }
 /*
 Intro/Splash Screen
 */
-#intro {
+/*#intro {
   padding: 50px;
   background-color: #00acc1;
   position: absolute;
@@ -43,7 +43,7 @@ button#exit-intro:hover {
 button#exit-intro:hover {
   display:hidden;
 }
-
+/*
 /*
 Styling links
 */
@@ -88,6 +88,7 @@ img {
 #flex-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between
 }
 
 #menu {
@@ -110,20 +111,27 @@ Material for the visualization
   display: flex;
 }
 
-#map-holder {
-  width: 250px;
-  height: 250px;
-
+#chart-holder {
+  width: auto;
+  height: auto;
 }
+
+/*#map-holder {
+  width: auto;
+  height: auto;
+}*/
+
   .bar-chart {
-    stroke: green;
-    width: 500px;
-    height: 500px;
+    /*stroke: green;*/
+    width: 700px;
+    height: auto;
     position: relative;
   }
 
-  svg {
-    padding: 50px;
+  #chart-holder svg {
+  /*padding: 50px;*/
+  width: 1400px;
+  height: 1100px;
   }
 
   text {
@@ -131,7 +139,7 @@ Material for the visualization
     text-anchor: middle;
     color: green;
   }
-
+/*
   .arc {
     stroke: #fff;
     fill: "black";
@@ -141,6 +149,7 @@ Material for the visualization
     color: white;
     stroke: white;
   }
+*/
 
 /*
 *footer

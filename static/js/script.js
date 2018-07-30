@@ -68,41 +68,29 @@ function requestBoroData() {
   if (this.readyState === XMLHttpRequest.DONE) {
     if (this.status === 200) {
       let queryResult = JSON.parse(this.responseText); // or do you need JSON.parse here?
-      makeDonutChart(queryResult);
+      console.log(queryResult);
+      d3.select("#chart-holder").selectAll("svg").remove();
+      createStackedBarChart(queryResult);
     } else {
-      window.alert('Connection failed.');
+      window.alert('Connection failed');
     }
   }
 }
 
 //
-makeHTTPRequest(populateYearDropdown, '/years');
-
+// makeHTTPRequest(populateYearDropdown, '/years');
+// makeHTTPRddequest(requestBoroData, '')
 /*
 Event handler for the dropdown menu
 */
 let boroughDropdown = document.getElementById("borough-dropdown");
-boroughDropdown.addEventListener("change", selectBorough);
+boroughDropdown.addEventListener('change', selectBorough);
 
 function selectBorough() {
   let borough_selected = document.getElementById("borough-dropdown").value;
-  let apiURL = '/api/filter_request?borough=' + borough_selected.toUpperCase();
+  let apiURL = '/find_by_borough?borough=' + borough_selected.toUpperCase();
   makeHTTPRequest(requestBoroData, apiURL);
-  let queryResult = JSON.parse(query);
-  createBarchart(queryResult);
+  // let queryResult = JSON.parse(query);
+  // createStackedBarChart(queryResult);
   // makeDonutChart(queryResult);
 };
-
-/*
-An old testing function.  Delete once you lern the syntax
-*/
-// function displayJSON(query) {
-//   d3.json(API_URL + query, function(error, data) {
-//
-//     if(error) {
-//       return console.warn(error);
-//     }
-//     d3.select('#query pre').html(query);
-//     d3.select('#data pre').html(JSON.stringify(data, null, 4));
-//   });
-// };
