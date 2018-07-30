@@ -1,26 +1,13 @@
 <!DOCTYPE = html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <link href={{url_for('static', filename='css/mapStyles.css')}} rel="stylesheet" type="text/css">
-</head>
+  <head>
+   <meta charset="utf-8">
+   <link href={{url_for('static', filename='css/mapStyles.css')}} rel="stylesheet" type="text/css">
+  </head>
 
-<body>
-  <div id="map-holder">
-  </div>
-
-
-  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5SWN_ijHqIj-3y3Y4UcofyZDnuyKdI8o"></script> -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5SWN_ijHqIj-3y3Y4UcofyZDnuyKdI8o&libraries=visualization"></script>
-  <script src={{url_for('static', filename='js/' + js_file)}}></script>
-  <!-- <script src="/js/markerclusterer.js"></script> -->
-  <!-- <script src="/js/heatmap2.js"></script> -->
-  <!-- <script src="/js/schoolBorders.js"></script> -->
-  <!-- <script src="/js/baseMap.js"></script> -->
-  <!-- <script src="/js/overlay.js"></script> -->
-<!--  <script src="/js/mapCluster.js"></script> -->
-<!--  <script src="/js/markerMap.js"></script> -->
-  <!-- <script src="/js/mapVisualise.js"></script> -->
+  <body>
+    <div id="map-holder"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5SWN_ijHqIj-3y3Y4UcofyZDnuyKdI8o&libraries=visualization"></script>
+    <script src={{url_for('static', filename='js/' + js_file)}}></script>
   </body>
-
 </html>

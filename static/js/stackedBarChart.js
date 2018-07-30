@@ -2,9 +2,8 @@
 
 function createStackedBarChart(jsonList) {
   let svg = d3.select("#chart-holder").append("svg");
-  console.log(svg);
   // svg.append("svg");
-  console.log("hello world");
+  // constants for use in creating a bar chart
   let data = jsonList,
       width = 1000,
       height = 900;
@@ -14,10 +13,7 @@ function createStackedBarChart(jsonList) {
   // let svg = d3.select("#chart-holder").append("svg").attr("width", width)
   //     .attr("height", height);
 
-  // let g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
   let g = svg.append("g");
-  // constants for use in creating a bar chart
   let keys = [
     "sum_number_of_persons_injured",
     "sum_number_of_motorist_killed",
@@ -31,7 +27,6 @@ function createStackedBarChart(jsonList) {
 
   let colors = ["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f", "#e5c494", "#b3b3b3"];
 
-  // Helper Functions
   // helper function for getting total number of crashes in the object "crash_totals"
   function getTotalNumber(d) {
     let x = 0;
@@ -43,9 +38,9 @@ function createStackedBarChart(jsonList) {
     return x;
   }
 
-  //define generators used to create the svg elements
+  // define generators used to create the svg elements
   // that comprise the stacked bar chart
-  //define the axes: x, y, and z (the colors of the stacked data)
+  // define the axes: x, y, and z (the colors of the stacked data)
   let x = d3.scaleBand()
       .rangeRound([0, width])
       .paddingInner(0.05)
@@ -69,8 +64,8 @@ function createStackedBarChart(jsonList) {
 
   let area = d3.area();
 
-  //Basically one has one containing "g" element for the entire chart.
-  //All the stacked bars have a container.
+  // Basically one has one containing "g" element for the entire chart.
+  // All the stacked bars have a container.
   g.append("g").attr("class", "stacked-bars").selectAll("g")
       .data(stack(data))
       .enter().append("g")
@@ -80,7 +75,7 @@ function createStackedBarChart(jsonList) {
       .enter().append("rect")
         .attr("x", function(d) { return x(d.data.zip_code); })
         .attr("y", function(d) { return y(d[1]); })
-        .attr("height", function(d) { return y(d[0]) - y(d[1]); })//be careful to pass both vals to y(), not their difference
+        .attr("height", function(d) { return y(d[0]) - y(d[1]); })
         .attr("width", x.bandwidth());
 
   //Add a "g" element for the x-axis
