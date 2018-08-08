@@ -58,18 +58,21 @@ function createStackedBarChart(jsonList) {
   z.domain(keys);
 
   //.range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+  // a stack generator
   let stack = d3.stack()
               .keys(keys)
               .value(function(d, key) { return d.crash_totals[key]; });
 
   let area = d3.area();
 
-  // Basically one has one containing "g" element for the entire chart.
-  // All the stacked bars have a container.
-  g.append("g").attr("class", "stacked-bars").selectAll("g")
+  // each "stacked bar" of each belongs to a <g> element
+  g.append("g").attr("class", "stacked-bars")
+    // .attr("trasform", "translate(30, 0)")
+    .selectAll("g")
       .data(stack(data))
       .enter().append("g")
-        .attr("fill", function(d) { return z(d.key); })//this returns the key for which this data is used for???
+        //this returns the key for which this data is used for???
+        .attr("fill", function(d) { return z(d.key); })
       .selectAll("rect")
       .data(function(d) { return d; })
       .enter().append("rect")
@@ -78,41 +81,43 @@ function createStackedBarChart(jsonList) {
         .attr("height", function(d) { return y(d[0]) - y(d[1]); })
         .attr("width", x.bandwidth());
 
-  //Add a "g" element for the x-axis
+  // add a <g> element for the x-axis
+  // and configure the display of the axis
   g.append("g")
-      .attr("class", "axis")
+      .attr("class", "x axis")
       .attr("transform", "translate(0, " + (height) + ")")
       .call(d3.axisBottom(x)
                       .tickSizeOuter(0))
       .selectAll("text")
       //.attr("transform", "rotate(-90)")
       .attr("text-anchor", "end")
-      .attr("y", "-5px")
+      .attr("y", "40px")
       .attr("writing-mode", "vertical-rl")
-      .attr("x", "-8px");
+      .attr("x", "0px");
 
   // y-axis
   g.append("g")
-      .attr("class", "axis")
+      .attr("class", "y axis")
+      // .attr("transform", "translate(30, 0)")
       .call(d3.axisLeft(y).ticks(null, "s"))
     .append("text")
       .attr("x", 2)
       .attr("y", y(y.ticks().pop()) + 0.5)
-      .attr("dy", "0.32em")
+      .attr("dy", "-0.72em")
       .attr("fill", "#000")
       .attr("font-weight", "bold")
-      .attr("text-anchor", "start")
+      .attr("text-anchor", "end")
       .attr("text", "Crashes");
 
-  // create the legend
+  // create the legend text and color boxes
   let legend = g.append("g")
       .attr("font-family", "sans-serif")
       .attr("font-size", "10")
       .attr("text-anchor", "end")
     .selectAll("g")
-    .data(keys.slice().reverse())//slice returns a shallow copy, and reverse works in-place
+    .data(keys.slice().reverse())
       .enter().append("g")
-      .attr("transform", function(d, i) { return "translate(0, " + i * 20 + ")"; }); 
+      .attr("transform", function(d, i) { return "translate(0, " + i * 20 + ")"; });
 
   legend.append("rect")
       .attr("x", width - 19)
@@ -121,8 +126,8 @@ function createStackedBarChart(jsonList) {
       .attr("fill", z);
 
   legend.append("text")
-      .attr("x", width - 24)
-      .attr("y", 9.5)
+      .attr("x", width - 45)
+      .attr("y", 10)
       .attr("dy", "0.32em")
-      .text(function(d) { return d; });
+      .text(function(d) { return d.replace(/_/g, ' ').replace(/sum /, '') });
 }
