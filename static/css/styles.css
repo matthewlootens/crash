@@ -17,10 +17,14 @@ Intro/Splash Screen
   border-color: black;
   border: 2px;
   border-radius: 5px;
-  /*opacity: .7;*/
+  /*opacity: .7;
   transition: opacity 3500ms linear;
 }
+*/
 
+  #intro {
+    display: none;
+  }
 button#exit-intro {
   background-color: #c9bc1f;
   border-radius: 10px;
@@ -32,7 +36,6 @@ button#exit-intro {
   top: 10%;
   transition: transform 300ms ease-out, background-color 300ms ease-out;
   width: 25%;
-
 }
 
 button#exit-intro:hover {
@@ -53,16 +56,6 @@ a {
 }
 
 a:hover {
-  background-color: yellow;
-}
-
-#chart-holder {
-  /*position: relative;*/
-  left: auto;
-  right: auto;
-  /*width: 800px;*/
-  /*height: 600px;*/
-  margin: 10px;
 }
 
 img {
@@ -103,7 +96,7 @@ img {
 }
 
 /*
-Material for the visualization
+ * Rules for visualization
 */
 
 #crashviz {
@@ -112,8 +105,8 @@ Material for the visualization
 }
 
 #chart-holder {
-  width: auto;
-  height: auto;
+  width: 1000px;
+  height: 900px;
 }
 
 /*#map-holder {
@@ -121,35 +114,21 @@ Material for the visualization
   height: auto;
 }*/
 
-  .bar-chart {
-    /*stroke: green;*/
-    width: 700px;
-    height: auto;
-    position: relative;
-  }
+#chart-holder svg {
+  padding: 50px;
+  width: 1000px;
+  height: 900px;
+}
 
-  #chart-holder svg {
-  /*padding: 50px;*/
-  width: 1400px;
-  height: 1100px;
-  }
+.stacked-bars {
+  padding: 0px 50px;
+  left: 50px;
+}
 
-  text {
-    font: 10px sans-serif;
-    text-anchor: middle;
-    color: green;
+text {
+  font: 10px sans-serif;
+  color: green;
   }
-/*
-  .arc {
-    stroke: #fff;
-    fill: "black";
-  }
-
-  .axis {
-    color: white;
-    stroke: white;
-  }
-*/
 
 /*
 *footer
@@ -160,8 +139,7 @@ footer {
 }
 
 footer .material-icons {
-  /*float: right;*/
-  color: #99aa00;
+  color: #ff33ff;
   padding: 10px;
 }
 

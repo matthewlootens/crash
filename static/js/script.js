@@ -5,7 +5,6 @@
 
 'use strict';
 const API_BASE_URL = 'http://localhost:5500';
-
 /**
  * A generic function for doing simply AJAX requests using the
  * old style XMLHttpRequest() objects
@@ -20,8 +19,7 @@ function makeHTTPRequest(callbackFunction, apiURL) {
   httpRequest.send();
 }
 
-
-function requestBoroughData() {
+function requestData() {
   if (this.readyState === XMLHttpRequest.DONE) {
     if (this.status === 200) {
       let queryResult = JSON.parse(this.responseText);
@@ -34,26 +32,36 @@ function requestBoroughData() {
   }
 }
 
-let boroughDropdown = document.getElementById("borough-dropdown");
-boroughDropdown.addEventListener('change', selectBorough);
+function submitQuery() {
+  let borough = document.getElementById("borough-dropdown")
+    .value.toUpperCase();
+  let year = document.getElementById("year-dropdown").value;
+  let apiURL = `/crashes?borough=${borough}&year=${year=='allYears' ? '' : year}`;
+  console.log(apiURL);
+  makeHTTPRequest(requestData, apiURL);
+}
 
 function selectBorough() {
   let borough_selected = document.getElementById("borough-dropdown").value;
-  let apiURL = '/find_by_borough?borough=' + borough_selected.toUpperCase();
+  let apiURL = '/crashes?borough=' + borough_selected.toUpperCase();
   makeHTTPRequest(requestBoroughData, apiURL);
-};
+}
 
-/**
 function populateYearDropdown() {
+  function addOption(value, text) {
+    let opt = document.createElement("option");
+    opt.value = value;
+    opt.text = text;
+    selection.appendChild(opt);
+  }
+
   if (this.readyState === XMLHttpRequest.DONE) {
     if (this.status === 200) {
       let response = JSON.parse(this.responseText);
-      let selection = document.querySelector("#year-dropdown")
+      var selection = document.querySelector("#year-dropdown");
+      addOption('allYears', 'All Years');
       for (let item of response) {
-        let opt = document.createElement("option");
-        opt.value = item.year;
-        opt.text = item.year;
-        selection.appendChild(opt);
+        addOption(item.year, item.year);
       }
     }
   } else {
@@ -61,9 +69,9 @@ function populateYearDropdown() {
                     this.status + ')');
   }
 }
-*/
-// makeHTTPRequest(populateYearDropdown, '/years');
-// makeHTTPRddequest(requestBoroData, '')
-/*
-Event handler for the dropdown menu
-*/
+
+(function initalizeScripts() {
+  makeHTTPRequest(populateYearDropdown, '/years');
+  document.getElementById("submit-button")
+    .addEventListener('click', submitQuery);
+})();

@@ -1,4 +1,4 @@
-<!DOCTYPE = html>
+<!DOCTYPE html>
 <html>
 <head>
   <link href={{url_for('static', filename='css/styles.css')}} rel="stylesheet" type="text/css">
@@ -11,10 +11,7 @@
 <body>
 <!--The intro splash screen-->
 <div id="intro">
-    This is a data visualization of crashes and is searchable by borough, year, and zipcode. All data has been pulled from <a href="https:/none/opendata.cityofnewyork.us/">NYC Open Data</a> site. For more information on avaiable datasets for crashes and other statistics, click <a href="">here</a>.
-
-    The data are imcomplete: XXX (XX%) entries lack location details except for GPS coordinates. A future version of this application will have the ability to show these crashes as well and allow for crowd-sourced updates to the street and other address information.
-
+    This is a data visualization of crashes and is searchable by borough, year, and zipcode. Data are from <a href="https:/none/opendata.cityofnewyork.us/">NYC Open Data</a> site. For more information on avaiable datasets for crashes and other statistics, click <a href="">here</a>.
     <button id="exit-intro">
         Explore
     </button>
@@ -32,15 +29,21 @@
             <option value="Manhattan">Manhattan</option>
             <option value="Queens">Queens</option>
             <option value="Brooklyn">Brooklyn</option>
-            <option value="Staten-Island">Staten Island</option>
+            <option value="Staten Island">Staten Island</option>
           </select>
         </div>
+        <div class="menu-item" id="year-select">
+          Year:
+          <select id="year-dropdown"></select>
+        </div>
+        <button type=button name="submit" id="submit-button">Submit</button>
       </div>
     </nav>
   </header>
 
   <div id="crashviz">
     <div id="chart-holder">
+      <!-- <svg></svg> -->
     </div>
   </div>
 
@@ -58,20 +61,9 @@
   </footer>
 </div>
 
-<!--scripts-->
-<script src={{url_for('static', filename='lib/d3.js')}}></script>
-
-<!-- <script src={{url_for('static', filename='js/donut.js')}}></script> -->
-<!-- <script src="/js/bar_chart2.js"></script> -->
-
-<script src={{url_for('static', filename='js/script.js')}}></script>
-<!-- <script src={{url_for('static', filename='js/test_data.js')}}></script> -->
-<script src={{url_for('static', filename='js/stackedBarChart.js')}}></script>
-
-
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5SWN_ijHqIj-3y3Y4UcofyZDnuyKdI8o"></script>
-  <script src={{url_for('static', filename='js/schoolDistrictData.js')}}></script>
-  <script src={{url_for('static', filename='js/overlay.js')}}></script>
-  <script src={{url_for('static', filename='js/markerMap.js')}}></script>
-</body>
+    <!--scripts-->
+    <script src={{url_for('static', filename='lib/d3.js')}}></script>
+    <script src={{url_for('static', filename='js/script.js')}}></script>
+    <script src={{url_for('static', filename='js/stackedBarChart.js')}}></script>
+  </body>
 </html>
